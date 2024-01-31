@@ -11,15 +11,17 @@ DB = [
 
 # Рассчёт средней оценки по классу
 total_grades = 0
+id = 1
 num_students = len(DB)
 for klass, mark in DB:
     total_grades += mark
+    id += 1
 
 average_grade = round(total_grades / num_students, 3)
 
 # Нахождение оценки Владимира Хайдарова
 vladimir_grade = None
-id = 0
+id = 1
 for klass, mark in DB:
     id += 1
     if klass == 'Хадаров Владимир':
