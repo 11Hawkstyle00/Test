@@ -1,16 +1,41 @@
-# This is a sample Python script.
+# Открытие нового CSV-файла для записи
+file = open('student_new.csv', 'w')
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Определение данных для класса и их оценки
+DB = [
+    ('11 М', 3.5),
+    ('11 А', 2.5),
+    ('10 И', 3.5)
+]
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+8 to toggle the breakpoint.
+# Рассчёт средней оценки по классу
+total_grades = 0
+num_students = len(DB)
+for klass, mark in DB:
+    total_grades += mark
 
+average_grade = round(total_grades / num_students, 3)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# Нахождение оценки Владимира Хайдарова
+vladimir_grade = None
+id = 0
+for klass, mark in DB:
+    id += 1
+    if klass == 'Хадаров Владимир':
+        vladimir_grade = mark
+        break
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# Вывод оценки Владимира Хайдарова
+print(f"Ты получил: {vladimir_grade}, за проект - {id}")
+
+# Запись данных в CSV-файл
+file.write('Класс, Средняя оценка\n')
+for klass, mark in DB:
+    if mark == '':
+        file.write(f'{klass}, {average_grade}\n')
+    else:
+        file.write(f'{klass}, {mark}\n')
+
+# Закрытие файла
+file.close()
